@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="filterapp">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+
+<script>
+angular.module('filterapp',[])
+.controller('filterController',function($scope){
+	$scope.det=[{
+		location:"chennai",
+		cases:200,
+		death:2},
+		{
+		location:"mdu",
+		cases:100,
+		death:5
+		}
+		];
+		$scope.det1=[{
+			country:"india",
+			cases:10000,
+			death:200
+		},{
+			country:"kerala",
+			cases:12000,
+			death:300
+		}];
+
+});
+</script>
+<body>
+	<div ng-controller="filterController">
+		<input type="text" ng-model="flt">
+		<table border=1>
+		<ul>
+			<tr>
+				<th>location</th>
+				<th>cases</th>
+				<th>deaths</th>
+			</tr>
+			<tr ng-repeat="x in det | filter:{location:flt}">
+				<td>{{x.location}}</td>
+				<td>{{x.cases}}</td>
+				<td>{{x.death}}</td>
+			</tr>
+		</ul>
+	</table>
+
+	<br>
+	<br>
+	<input type="text" ng-model="flt1" >
+	<table border=1>
+		<ul>
+			<tr>
+				<th>country</th>
+				<th>cases</th>
+				<th>deaths</th>
+			</tr>
+			<tr ng-repeat="x in det1 | filter:{country:flt1}">
+				<td>{{x.country}}</td>
+				<td>{{x.cases}}</td>
+				<td>{{x.death}}</td>
+			
+</tr>
+</ul>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html ng-app="FilterApp">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+ body {
+ padding: 0 30px 20px 30px;
+ background-color: lightgreen;
+ }
+
+ table {
+ width: 100%;
+ font-family: 'Open Sans', sans-serif;
+ border-collapse: collapse;
+ margin-top: 10px;
+ border: 5px;
+ }
+
+ td,
+ th {
+ text-align: centre;
+ padding: 10px 0 10px 0;
+ color: black;
+ font-size: 17px;
+ }
+
+ th {
+ background-color: #f50707;
+ color: white;
+ text-transform: uppercase;
+ }
+
+ label {
+ color: white;
+ font-size: 20px;
+ }
+</style>
+<body>
+ <centre>
+ <div ng-app="FilterApp" ng-controller="FilterController">
+ <centre>
+ <h1>Covid 19 Details</h1>
+ </centre>
+ <input ngmodel="flt" type="text" placeholder="Enter State name" style="textalign:centre;width:170px;height:30px;font-family:georgia;"><br>
+ <ul>
+ <table>
+ <tr>
+ <th>Location</th>
+ <th>Total Cases</th>
+ <th>Deaths</th>
+ </tr>
+ <tr ng-repeat="de in Details | filter:{location:flt}">
+ <td>{{de.location}}</td>
+ <td>{{de.totalCases}}</td>
+ <td>{{de.deaths}}</td>
+ </tr>
+ </table>
+ </ul>
+ <br>
+ <input ngmodel="flt1" type="text" placeholder="Enter Country name" style="textalign:centre;width:170px;height:30px;font-family:georgia;"><br>
+ <ul>
+ <table>
+ <tr>
+ <th>Country</th>
+ <th>1st dose</th>
+ <th>2nd dose</th>
+ </tr>
+ <tr ng-repeat="de in Details1 | filter:{country:flt1}">
+ <td>{{de.country}}</td>
+ <td>{{de.fullVaccine}}</td>
+ <td>{{de.partVaccine}}</td>
+ </tr>
+ </table>
+ </ul>
+ <script>
+ angular.module('FilterApp', [])
+ .controller('FilterController', function($scope) {
+
+ $scope.Details = [{
+ location: "Tamilnadu",
+ totalCases: 2617943,
+ deaths: 34961
+ }, {
+ location: "Kerala",
+ totalCases: 4122133,
+ deaths: 21149
+ }, {
+ location: "Karnataka",
+ totalCases: 2951844,
+ deaths: 37361
+ }, {
+ location: "Gujarat",
+ totalCases: 1437839,
+ deaths: 25082
+ }, {
+ location: "Kolkata",
+ totalCases: 1009223,
+ deaths: 8028
+ }];
+ $scope.Details1 = [{
+ country: "India",
+ fullVaccine: "100.56 million",
+ partVaccine: "473 million"
+ }, {
+ country: "Malaysia",
+ fullVaccine: "12.36 million",
+ partVaccine: "5.02 million"
+ }, {
+ country: "Indonesia",
+ fullVaccine: "575775",
+ partVaccine: "5885885"
+ },
+ {
+ country: "Myanmar",
+ fullVaccine: "724812",
+ partVaccine: "2.70 million"
+ }, {
+ country: "Bangladesh",
+ fullVaccine: "8.25 million",
+ partVaccine: "10.50 million"
+ }
+ ];
+ });
+ </script>
+
+ </div>
+ </centre>
+</body>
+</html>
